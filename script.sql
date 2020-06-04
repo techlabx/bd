@@ -25,22 +25,12 @@ CREATE TABLE direcionamento(
 			   --REFERENCES questionario (nome) ON DELETE SET NULL
 );
 
-CREATE TABLE instituto(
-	siglaInstituto VARCHAR(6),
-	nomeInstituto VARCHAR(100),
-	
-	CONSTRAINT pk_instituto PRIMARY KEY (siglaInstituto)
-);
-
 CREATE TABLE atendente(
 	nomeAtendente VARCHAR(150) NOT NULL,
 	emailAtendente VARCHAR (100) NOT NULL,
-	institutoAtendente VARCHAR(6),
 	linkagenda VARCHAR(200) NOT NULL,
 	
-	CONSTRAINT pk_atendente PRIMARY KEY (emailAtendente),
-	CONSTRAINT fk_atendente FOREIGN KEY (institutoAtendente)
-			   REFERENCES instituto (siglaInstituto) ON DELETE SET NULL
+	CONSTRAINT pk_atendente PRIMARY KEY (emailAtendente)
 );
 
 CREATE TABLE usuario(
@@ -48,6 +38,16 @@ CREATE TABLE usuario(
 	nomeUsuario VARCHAR(150) NOT NULL,
 	
 	CONSTRAINT pk_usuario PRIMARY KEY (nuspUsuario)
+);
+
+CREATE TABLE instituto(
+	siglaInstituto VARCHAR(6),
+	nomeInstituto VARCHAR(100) NOT NULL,
+	atendenteResp VARCHAR(100),
+	
+	CONSTRAINT pk_instituto PRIMARY KEY (siglaInstituto),
+	CONSTRAINT fk_instituto FOREIGN KEY (atendenteResp)
+			   REFERENCES atendente (emailAtendente) ON DELETE SET NULL	
 );
 
 
@@ -164,131 +164,128 @@ INSERT INTO direcionamento (conteudoDirec) VALUES ('SAMU');
 
 
 -- CAMPUS SÃO CARLOS
-INSERT INTO instituto VALUES ('ICMC', 'Instituto de Ciências Matemáticas e de Computação');
+INSERT INTO instituto VALUES ('ICMC', 'Instituto de Ciências Matemáticas e de Computação', 'icmc@usp.br');
 
-INSERT INTO instituto VALUES ('IQSC', 'Instituto de Química de São Carlos');
+INSERT INTO instituto VALUES ('IQSC', 'Instituto de Química de São Carlos', 'iqsc@usp.br');
 
-INSERT INTO instituto VALUES ('IFSC', 'Instituto de Física de São Carlos');
+INSERT INTO instituto VALUES ('IFSC', 'Instituto de Física de São Carlos', 'outros@usp.br');
 
-INSERT INTO instituto VALUES ('EESC', 'Escola de Engenharia de São Carlos');
+INSERT INTO instituto VALUES ('EESC', 'Escola de Engenharia de São Carlos', 'eesc@usp.br');
 
-INSERT INTO instituto VALUES ('IAU', 'Instituto de Arquitetura e Urbanismo');
+INSERT INTO instituto VALUES ('IAU', 'Instituto de Arquitetura e Urbanismo', 'iau@usp.br');
 
 
 -- CAMPUS SÃO PAULO
-INSERT INTO instituto VALUES ('EACH', 'Escola de Artes, Ciências e Humanidades');
+INSERT INTO instituto VALUES ('EACH', 'Escola de Artes, Ciências e Humanidades', 'outros@usp.br');
 
-INSERT INTO instituto VALUES ('ECA', 'Escola de Comunicações e Artes');
+INSERT INTO instituto VALUES ('ECA', 'Escola de Comunicações e Artes', 'outros@usp.br');
 
-INSERT INTO instituto VALUES ('EEFE', 'Escola de Educação Física e Esporte');
+INSERT INTO instituto VALUES ('EEFE', 'Escola de Educação Física e Esporte', 'outros@usp.br');
 
-INSERT INTO instituto VALUES ('EE', 'Escola de Enfermagem');
+INSERT INTO instituto VALUES ('EE', 'Escola de Enfermagem', 'outros@usp.br');
 
-INSERT INTO instituto VALUES ('Poli', 'Escola Politécnica');
+INSERT INTO instituto VALUES ('Poli', 'Escola Politécnica', 'outros@usp.br');
 
-INSERT INTO instituto VALUES ('FAU', 'Faculdade de Arquitetura e Urbanismo');
+INSERT INTO instituto VALUES ('FAU', 'Faculdade de Arquitetura e Urbanismo', 'outros@usp.br');
 
-INSERT INTO instituto VALUES ('FCF', 'Faculdade de Ciências Farmacêuticas');
+INSERT INTO instituto VALUES ('FCF', 'Faculdade de Ciências Farmacêuticas', 'outros@usp.br');
 
-INSERT INTO instituto VALUES ('FD', 'Faculdade de Direito');
+INSERT INTO instituto VALUES ('FD', 'Faculdade de Direito', 'outros@usp.br');
 
-INSERT INTO instituto VALUES ('FEA', 'Faculdade de Economia, Administração e Contabilidade');
+INSERT INTO instituto VALUES ('FEA', 'Faculdade de Economia, Administração e Contabilidade', 'outros@usp.br');
 
-INSERT INTO instituto VALUES ('FE', 'Faculdade de Educação');
+INSERT INTO instituto VALUES ('FE', 'Faculdade de Educação', 'outros@usp.br');
 
-INSERT INTO instituto VALUES ('FFLCH', 'Faculdade de Filosofia, Letras e Ciências Humanas');
+INSERT INTO instituto VALUES ('FFLCH', 'Faculdade de Filosofia, Letras e Ciências Humanas', 'outros@usp.br');
 
-INSERT INTO instituto VALUES ('FM', 'Faculdade de Medicina');
+INSERT INTO instituto VALUES ('FM', 'Faculdade de Medicina', 'outros@usp.br');
 
-INSERT INTO instituto VALUES ('FMVZ', 'Faculdade de Medicina Veterinária e Zootecnia');
+INSERT INTO instituto VALUES ('FMVZ', 'Faculdade de Medicina Veterinária e Zootecnia', 'outros@usp.br');
 
-INSERT INTO instituto VALUES ('FO', 'Faculdade de Odontologia');
+INSERT INTO instituto VALUES ('FO', 'Faculdade de Odontologia', 'outros@usp.br');
 
-INSERT INTO instituto VALUES ('FSP', 'Faculdade de Saúde Pública');
+INSERT INTO instituto VALUES ('FSP', 'Faculdade de Saúde Pública', 'outros@usp.br');
 
-INSERT INTO instituto VALUES ('IAG', 'Instituto de Astronomia, Geofísica e Ciências Atmosféricas');
+INSERT INTO instituto VALUES ('IAG', 'Instituto de Astronomia, Geofísica e Ciências Atmosféricas', 'outros@usp.br');
 
-INSERT INTO instituto VALUES ('IB', 'Instituto de Biociências');
+INSERT INTO instituto VALUES ('IB', 'Instituto de Biociências', 'outros@usp.br');
 
-INSERT INTO instituto VALUES ('ICB', 'Instituto de Ciências Biomédicas');
+INSERT INTO instituto VALUES ('ICB', 'Instituto de Ciências Biomédicas', 'outros@usp.br');
 
-INSERT INTO instituto VALUES ('IEE', 'Instituto de Energia e Ambiente');
+INSERT INTO instituto VALUES ('IEE', 'Instituto de Energia e Ambiente', 'outros@usp.br');
 
-INSERT INTO instituto VALUES ('IEA', 'Instituto de Estudos Avançados');
+INSERT INTO instituto VALUES ('IEA', 'Instituto de Estudos Avançados', 'outros@usp.br');
 
-INSERT INTO instituto VALUES ('IEB', 'Instituto de Estudos Brasileiros');
+INSERT INTO instituto VALUES ('IEB', 'Instituto de Estudos Brasileiros', 'outros@usp.br');
 
-INSERT INTO instituto VALUES ('IF', 'Instituto de Física');
+INSERT INTO instituto VALUES ('IF', 'Instituto de Física', 'outros@usp.br');
 
-INSERT INTO instituto VALUES ('IGc', 'Instituto de Geociências');
+INSERT INTO instituto VALUES ('IGc', 'Instituto de Geociências', 'outros@usp.br');
 
-INSERT INTO instituto VALUES ('IME', 'Instituto de Matemática e Estatística');
+INSERT INTO instituto VALUES ('IME', 'Instituto de Matemática e Estatística', 'outros@usp.br');
 
-INSERT INTO instituto VALUES ('IMT', 'Instituto de Medicina Tropical de São Paulo');
+INSERT INTO instituto VALUES ('IMT', 'Instituto de Medicina Tropical de São Paulo', 'outros@usp.br');
 
-INSERT INTO instituto VALUES ('IP', 'Instituto de Psicologia');
+INSERT INTO instituto VALUES ('IP', 'Instituto de Psicologia', 'outros@usp.br');
 
-INSERT INTO instituto VALUES ('IQ', 'Instituto de Química');
+INSERT INTO instituto VALUES ('IQ', 'Instituto de Química', 'outros@usp.br');
 
-INSERT INTO instituto VALUES ('IRI', 'Instituto de Relações Internacionais');
+INSERT INTO instituto VALUES ('IRI', 'Instituto de Relações Internacionais', 'outros@usp.br');
 
-INSERT INTO instituto VALUES ('IO', 'Instituto Oceanográfico');
+INSERT INTO instituto VALUES ('IO', 'Instituto Oceanográfico', 'outros@usp.br');
 
 
 -- CAMPUS BAURU
-INSERT INTO instituto VALUES ('FOB', 'Faculdade de Odontologia de Bauru');
+INSERT INTO instituto VALUES ('FOB', 'Faculdade de Odontologia de Bauru', 'outros@usp.br');
 
 
 -- CAMPUS LORENA
-INSERT INTO instituto VALUES ('EEL', 'Escola de Engenharia de Lorena');
+INSERT INTO instituto VALUES ('EEL', 'Escola de Engenharia de Lorena', 'outros@usp.br');
 
 
 -- CAMPUS PIRACICABA
-INSERT INTO instituto VALUES ('CENA', 'Centro de Energia Nuclear na Agricultura');
+INSERT INTO instituto VALUES ('CENA', 'Centro de Energia Nuclear na Agricultura', 'outros@usp.br');
 
-INSERT INTO instituto VALUES ('ESALQ', 'Escola Superior de Agricultura "Luiz de Queiroz"');
+INSERT INTO instituto VALUES ('ESALQ', 'Escola Superior de Agricultura "Luiz de Queiroz"', 'outros@usp.br');
 
 
 -- CAMPUS PIRASSUNUNGA
-INSERT INTO instituto VALUES ('FZEA', 'Faculdade de Zootecnia e Engenharia de Alimentos');
+INSERT INTO instituto VALUES ('FZEA', 'Faculdade de Zootecnia e Engenharia de Alimentos', 'outros@usp.br');
 
 
 -- CAMPUS RIBEIRÃO PRETO
-INSERT INTO instituto VALUES ('EEFERP', 'Escola de Educação Física e Esporte de Ribeirão Preto');
+INSERT INTO instituto VALUES ('EEFERP', 'Escola de Educação Física e Esporte de Ribeirão Preto', 'outros@usp.br');
 
-INSERT INTO instituto VALUES ('EERP', 'Escola de Enfermagem de Ribeirão Preto');
+INSERT INTO instituto VALUES ('EERP', 'Escola de Enfermagem de Ribeirão Preto', 'outros@usp.br');
 
-INSERT INTO instituto VALUES ('FCFRP', 'Faculdade de Ciências Farmacêuticas de Ribeirão Preto');
+INSERT INTO instituto VALUES ('FCFRP', 'Faculdade de Ciências Farmacêuticas de Ribeirão Preto', 'outros@usp.br');
 
-INSERT INTO instituto VALUES ('FDRP', 'Faculdade de Direto de Ribeirão Preto');
+INSERT INTO instituto VALUES ('FDRP', 'Faculdade de Direto de Ribeirão Preto', 'outros@usp.br');
 
-INSERT INTO instituto VALUES ('FEARP', 'Faculdade de Economia, Administração e Contabilidade de Ribeirão Preto');
+INSERT INTO instituto VALUES ('FEARP', 'Faculdade de Economia, Administração e Contabilidade de Ribeirão Preto', 'outros@usp.br');
 
-INSERT INTO instituto VALUES ('FFCLRP', 'Faculdade de Filosofia, Ciências e Letras de Ribeirão Preto');
+INSERT INTO instituto VALUES ('FFCLRP', 'Faculdade de Filosofia, Ciências e Letras de Ribeirão Preto', 'outros@usp.br');
 
-INSERT INTO instituto VALUES ('FMRP', 'Faculdade de Medicina de Ribeirão Preto');
+INSERT INTO instituto VALUES ('FMRP', 'Faculdade de Medicina de Ribeirão Preto', 'outros@usp.br');
 
-INSERT INTO instituto VALUES ('FORP', 'Faculdade de Odontologia de Ribeirão Preto');
+INSERT INTO instituto VALUES ('FORP', 'Faculdade de Odontologia de Ribeirão Preto', 'outros@usp.br');
 
 
 -- CAMPUS SANTOS
-INSERT INTO instituto VALUES ('PMI', 'Departamento de Engenharia de Minas e Petróleo');
-
-
--- OUTROS
-INSERT INTO instituto VALUES ('Outros', 'Outro instituto da USP');
+INSERT INTO instituto VALUES ('PMI', 'Departamento de Engenharia de Minas e Petróleo', 'outros@usp.br');
 
 
 
-INSERT INTO atendente VALUES ('atendenteICMC', 'icmc@usp.br', 'ICMC', 'https://calendar.google.com/calendar/embed?src=usp.br_8gf4aqtrm2hdehm8aq3u10e548%40group.calendar.google.com&ctz=America%2FSao_Paulo');
 
-INSERT INTO atendente VALUES ('atendenteIQSC', 'iqsc@usp.br', 'IQSC', 'https://calendar.google.com/calendar/embed?src=usp.br_6fn9rhdlbg7ega7omtec6ih6h8%40group.calendar.google.com&ctz=America%2FSao_Paulo');
+INSERT INTO atendente VALUES ('atendenteICMC', 'icmc@usp.br', 'https://calendar.google.com/calendar/embed?src=usp.br_8gf4aqtrm2hdehm8aq3u10e548%40group.calendar.google.com&ctz=America%2FSao_Paulo');
 
-INSERT INTO atendente VALUES ('atendenteEESC', 'eesc@usp.br', 'EESC', 'https://calendar.google.com/calendar/embed?src=usp.br_4u3u7sld0ra4qm7t3i229gejdg%40group.calendar.google.com&ctz=America%2FSao_Paulo');
+INSERT INTO atendente VALUES ('atendenteIQSC', 'iqsc@usp.br', 'https://calendar.google.com/calendar/embed?src=usp.br_6fn9rhdlbg7ega7omtec6ih6h8%40group.calendar.google.com&ctz=America%2FSao_Paulo');
 
-INSERT INTO atendente VALUES ('atendenteIAU', 'iau@usp.br', 'IAU', 'https://calendar.google.com/calendar/embed?src=usp.br_1delqhqvni7fjffap2oj30emg8%40group.calendar.google.com&ctz=America%2FSao_Paulo');
+INSERT INTO atendente VALUES ('atendenteEESC', 'eesc@usp.br', 'https://calendar.google.com/calendar/embed?src=usp.br_4u3u7sld0ra4qm7t3i229gejdg%40group.calendar.google.com&ctz=America%2FSao_Paulo');
 
-INSERT INTO atendente VALUES ('atendenteOutros', 'outros@usp.br', 'Outros', 'https://calendar.google.com/calendar/embed?src=usp.br_vdr9jsc48snetq70f6lgdb8tpk%40group.calendar.google.com&ctz=America%2FSao_Paulo');
+INSERT INTO atendente VALUES ('atendenteIAU', 'iau@usp.br', 'https://calendar.google.com/calendar/embed?src=usp.br_1delqhqvni7fjffap2oj30emg8%40group.calendar.google.com&ctz=America%2FSao_Paulo');
+
+INSERT INTO atendente VALUES ('atendenteOutros', 'outros@usp.br', 'https://calendar.google.com/calendar/embed?src=usp.br_vdr9jsc48snetq70f6lgdb8tpk%40group.calendar.google.com&ctz=America%2FSao_Paulo');
 
 
 
