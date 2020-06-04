@@ -27,7 +27,7 @@ CREATE TABLE direcionamento(
 
 CREATE TABLE atendente(
 	nomeAtendente VARCHAR(150) NOT NULL,
-	emailAtendente VARCHAR (100) NOT NULL,
+	emailAtendente VARCHAR (100),
 	linkagenda VARCHAR(200) NOT NULL,
 	
 	CONSTRAINT pk_atendente PRIMARY KEY (emailAtendente)
@@ -292,5 +292,6 @@ INSERT INTO atendente VALUES ('atendenteOutros', 'outros@usp.br', 'https://calen
 INSERT INTO usuario VALUES ('10692224', 'Giovana Daniele da Silva');
 
 INSERT INTO usuario VALUES ('10692054', 'João Pedro Almeida Santos Secundino');
+
 
 
