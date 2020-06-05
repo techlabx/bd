@@ -28,7 +28,7 @@ CREATE TABLE direcionamento(
 CREATE TABLE atendente(
 	nomeAtendente VARCHAR(150) NOT NULL,
 	emailAtendente VARCHAR (100),
-	linkagenda VARCHAR(200) NOT NULL,
+	linkAgenda VARCHAR(200) NOT NULL,
 	
 	CONSTRAINT pk_atendente PRIMARY KEY (emailAtendente)
 );
@@ -54,7 +54,7 @@ CREATE TABLE instituto(
 
 INSERT INTO questionario VALUES ('SRQ-20', 'Nas próximas próximas perguntas, você realizará uma autoavaliação a respeito da sua saúde em geral. Serão 24 afirmativas, e você deve selecionar sim ou não para cada afirmativa. Não existe resposta certa ou errada, por isso pedimos que você responda da forma que você julgar melhor. Caso tenha alguma dúvida, você pode nos mandar uma mensagem pelo XXX.');
 								  
-INSERT INTO questionario VALUES ('Columbia', 'Nessa escala, será avaliado o risco de suicídio através de algumas perguntas. Essa escala foi criada por pesquisadores de diversas universidades (Universidade de Columbia; Universidade da Pensilvânia; Universidade de Pittsburgh e Universidade de Nova Iorque) e avalia comportamentos específicos que podem ser indicativos da intenções de uma pessoa em cometer suicídio. É importante ressaltar que os resultados apresentados são referentes a um período específico de sua vida, e que também podem mudar de acordo com as condições ambientais e temporais. É importante destacar que este resultado não visa definir você enquanto “suicida”, mas, sim, mostrar a necessidade de você procurar ajuda para enfrentar as dificuldades que está passando, no momento. Por isso pedimos que você seja o mais sincero/a possível nas respostas, para que você saiba se é importante buscar ajuda, ou de familiares e amigos, ou de uma equipe de saúde especializada.');
+INSERT INTO questionario VALUES ('Avaliação do Risco de Suicídio de Columbia', 'Nessa escala, será avaliado o risco de suicídio através de algumas perguntas. Essa escala foi criada por pesquisadores de diversas universidades (Universidade de Columbia; Universidade da Pensilvânia; Universidade de Pittsburgh e Universidade de Nova Iorque) e avalia comportamentos específicos que podem ser indicativos da intenções de uma pessoa em cometer suicídio. É importante ressaltar que os resultados apresentados são referentes a um período específico de sua vida, e que também podem mudar de acordo com as condições ambientais e temporais. É importante destacar que este resultado não visa definir você enquanto “suicida”, mas, sim, mostrar a necessidade de você procurar ajuda para enfrentar as dificuldades que está passando, no momento. Por isso pedimos que você seja o mais sincero/a possível nas respostas, para que você saiba se é importante buscar ajuda, ou de familiares e amigos, ou de uma equipe de saúde especializada.');
 
 
 
@@ -122,22 +122,22 @@ INSERT INTO pergunta (questOrigPerg, conteudoPerg)
 		
 		
 INSERT INTO pergunta (questOrigPerg, conteudoPerg)
-			VALUES ('Columbia', 'Você desejou estar morto(a) ou desejou poder dormir e nunca mais acordar?');
+			VALUES ('Avaliação do Risco de Suicídio de Columbia', 'Você desejou estar morto(a) ou desejou poder dormir e nunca mais acordar?');
 					
 INSERT INTO pergunta (questOrigPerg, conteudoPerg)
-			VALUES ('Columbia', 'Você já pensou realmente em se matar?');
+			VALUES ('Avaliação do Risco de Suicídio de Columbia', 'Você já pensou realmente em se matar?');
 					 
 INSERT INTO pergunta (questOrigPerg, conteudoPerg)
-			VALUES ('Columbia', 'Você tem pensado em como poderia fazer isso?');
+			VALUES ('Avaliação do Risco de Suicídio de Columbia', 'Você tem pensado em como poderia fazer isso?');
 					
 INSERT INTO pergunta (questOrigPerg, conteudoPerg)
-			VALUES ('Columbia', 'Você teve esses pensamentos e teve alguma intenção de colocá-los em prática?');
+			VALUES ('Avaliação do Risco de Suicídio de Columbia', 'Você teve esses pensamentos e teve alguma intenção de colocá-los em prática?');
 					
 INSERT INTO pergunta (questOrigPerg, conteudoPerg)
-			VALUES ('Columbia', 'Você já começou a elaborar ou já elaborou os detalhes de como se matar? Você pretende executar esse plano?');
+			VALUES ('Avaliação do Risco de Suicídio de Columbia', 'Você já começou a elaborar ou já elaborou os detalhes de como se matar? Você pretende executar esse plano?');
 					
 INSERT INTO pergunta (questOrigPerg, conteudoPerg)
-			VALUES ('Columbia', 'Você já fez alguma coisa, começou a fazer algo ou planejou fazer alguma coisa para acabar com sua vida?');	
+			VALUES ('Avaliação do Risco de Suicídio de Columbia', 'Você já fez alguma coisa, começou a fazer algo ou planejou fazer alguma coisa para acabar com sua vida?');	
 					
 					
 					
@@ -161,6 +161,20 @@ INSERT INTO direcionamento (conteudoDirec) VALUES ('Santa Casa');
 INSERT INTO direcionamento (conteudoDirec) VALUES ('Transporte');	
 
 INSERT INTO direcionamento (conteudoDirec) VALUES ('SAMU');	
+
+
+
+INSERT INTO atendente VALUES ('atendenteICMC', 'icmc@usp.br', 'https://calendar.google.com/calendar/embed?src=usp.br_8gf4aqtrm2hdehm8aq3u10e548%40group.calendar.google.com&ctz=America%2FSao_Paulo');
+
+INSERT INTO atendente VALUES ('atendenteIQSC', 'iqsc@usp.br', 'https://calendar.google.com/calendar/embed?src=usp.br_6fn9rhdlbg7ega7omtec6ih6h8%40group.calendar.google.com&ctz=America%2FSao_Paulo');
+
+INSERT INTO atendente VALUES ('atendenteEESC', 'eesc@usp.br', 'https://calendar.google.com/calendar/embed?src=usp.br_4u3u7sld0ra4qm7t3i229gejdg%40group.calendar.google.com&ctz=America%2FSao_Paulo');
+
+INSERT INTO atendente VALUES ('atendenteIAU', 'iau@usp.br', 'https://calendar.google.com/calendar/embed?src=usp.br_1delqhqvni7fjffap2oj30emg8%40group.calendar.google.com&ctz=America%2FSao_Paulo');
+
+INSERT INTO atendente VALUES ('atendenteOutros', 'outros@usp.br', 'https://calendar.google.com/calendar/embed?src=usp.br_vdr9jsc48snetq70f6lgdb8tpk%40group.calendar.google.com&ctz=America%2FSao_Paulo');
+
+
 
 
 -- CAMPUS SÃO CARLOS
@@ -276,22 +290,8 @@ INSERT INTO instituto VALUES ('PMI', 'Departamento de Engenharia de Minas e Petr
 
 
 
-
-INSERT INTO atendente VALUES ('atendenteICMC', 'icmc@usp.br', 'https://calendar.google.com/calendar/embed?src=usp.br_8gf4aqtrm2hdehm8aq3u10e548%40group.calendar.google.com&ctz=America%2FSao_Paulo');
-
-INSERT INTO atendente VALUES ('atendenteIQSC', 'iqsc@usp.br', 'https://calendar.google.com/calendar/embed?src=usp.br_6fn9rhdlbg7ega7omtec6ih6h8%40group.calendar.google.com&ctz=America%2FSao_Paulo');
-
-INSERT INTO atendente VALUES ('atendenteEESC', 'eesc@usp.br', 'https://calendar.google.com/calendar/embed?src=usp.br_4u3u7sld0ra4qm7t3i229gejdg%40group.calendar.google.com&ctz=America%2FSao_Paulo');
-
-INSERT INTO atendente VALUES ('atendenteIAU', 'iau@usp.br', 'https://calendar.google.com/calendar/embed?src=usp.br_1delqhqvni7fjffap2oj30emg8%40group.calendar.google.com&ctz=America%2FSao_Paulo');
-
-INSERT INTO atendente VALUES ('atendenteOutros', 'outros@usp.br', 'https://calendar.google.com/calendar/embed?src=usp.br_vdr9jsc48snetq70f6lgdb8tpk%40group.calendar.google.com&ctz=America%2FSao_Paulo');
-
-
-
 INSERT INTO usuario VALUES ('10692224', 'Giovana Daniele da Silva');
 
 INSERT INTO usuario VALUES ('10692054', 'João Pedro Almeida Santos Secundino');
-
 
 
