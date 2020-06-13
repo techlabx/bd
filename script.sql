@@ -1,6 +1,6 @@
 CREATE TABLE questionario(
 	apelido VARCHAR(100),
-	nome VARCHAR(250) NOT NULL,
+	nome VARCHAR(250),
 	descricao VARCHAR(1000) NOT NULL,
 	
 	CONSTRAINT pk_questionario PRIMARY KEY (apelido)
@@ -118,7 +118,7 @@ INSERT INTO pergunta (questOrigPerg, conteudoPerg)
 	        VALUES ('SRQ-20', 'Você se cansa com facilidade?');			
 
 INSERT INTO pergunta (questOrigPerg, conteudoPerg) 
-	        VALUES ('SRQ-20', 'Têm sensações desagradáveis no estomago?');
+	        VALUES ('SRQ-20', 'Tem sensações desagradáveis no estomago?');
 			
 		
 		
@@ -294,5 +294,6 @@ INSERT INTO instituto VALUES ('PMI', 'Departamento de Engenharia de Minas e Petr
 INSERT INTO usuario VALUES ('10692224', 'Giovana Daniele da Silva');
 
 INSERT INTO usuario VALUES ('10692054', 'João Pedro Almeida Santos Secundino');
+
 
 
