@@ -35,10 +35,10 @@ CREATE TABLE atendente(
 );
 
 CREATE TABLE usuario(
-	nuspUsuario BIGINT,
+	idUsuario VARCHAR(50),
 	nomeUsuario VARCHAR(150) NOT NULL,
 	
-	CONSTRAINT pk_usuario PRIMARY KEY (nuspUsuario)
+	CONSTRAINT pk_usuario PRIMARY KEY (idUsuario)
 );
 
 CREATE TABLE instituto(
@@ -294,6 +294,5 @@ INSERT INTO instituto VALUES ('PMI', 'Departamento de Engenharia de Minas e Petr
 INSERT INTO usuario VALUES ('10692224', 'Giovana Daniele da Silva');
 
 INSERT INTO usuario VALUES ('10692054', 'João Pedro Almeida Santos Secundino');
-
 
 
