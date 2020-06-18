@@ -119,6 +119,9 @@ INSERT INTO pergunta (questOrigPerg, conteudoPerg)
 
 INSERT INTO pergunta (questOrigPerg, conteudoPerg) 
 	        VALUES ('SRQ-20', 'Tem sensações desagradáveis no estomago?');
+
+INSERT INTO pergunta (questOrigPerg, conteudoPerg) 
+	        VALUES ('SRQ-20', 'Fim do questionário');
 			
 		
 		
@@ -139,8 +142,10 @@ INSERT INTO pergunta (questOrigPerg, conteudoPerg)
 					
 INSERT INTO pergunta (questOrigPerg, conteudoPerg)
 			VALUES ('Columbia', 'Você já fez alguma coisa, começou a fazer algo ou planejou fazer alguma coisa para acabar com sua vida?');	
-					
-					
+
+INSERT INTO pergunta (questOrigPerg, conteudoPerg) 
+	        VALUES ('Columbia', 'Fim do questionário');
+
 					
 					
 INSERT INTO direcionamento (conteudoDirec) VALUES ('GAPSI');	
