@@ -103,7 +103,7 @@ INSERT INTO pergunta (questOrigPerg, conteudoPerg)
 	        VALUES ('SRQ-20', 'Tem perdido o interesse pelas coisas?');				
 			
 INSERT INTO pergunta (questOrigPerg, conteudoPerg) 
-	        VALUES ('SRQ-20', 'Tem dificuldades no serviço (seu trabalho é penoso, lhe causa sofrimento?)');			
+	        VALUES ('SRQ-20', 'Tem dificuldades no serviço (seu trabalho é penoso, lhe causa sofrimento)?');			
 		
 INSERT INTO pergunta (questOrigPerg, conteudoPerg) 
 	        VALUES ('SRQ-20', 'Você se sente uma pessoa inútil, sem préstimo?');			
