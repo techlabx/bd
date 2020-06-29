@@ -35,7 +35,7 @@ CREATE TABLE atendente(
 );
 
 CREATE TABLE instituto(
-	siglaInstituto VARCHAR(6),
+	siglaInstituto VARCHAR(10),
 	nomeInstituto VARCHAR(100) NOT NULL,
 	atendenteResp VARCHAR(100),
 	
@@ -215,12 +215,23 @@ INSERT INTO instituto VALUES ('EESC', 'Escola de Engenharia de São Carlos', 'ee
 
 INSERT INTO instituto VALUES ('IAU', 'Instituto de Arquitetura e Urbanismo', 'iau@usp.br');
 
+-- OUTROS
+INSERT INTO instituto VALUES ('PUSP', 'Prefeitura do Campus USP', 'outros@usp.br');
+
+INSERT INTO instituto VALUES ('CeTI-SC', 'Centro de Tecnologia da Informação de São Carlos', 'outros@usp.br');
+
+INSERT INTO instituto VALUES ('IEA', 'Instituto de Estudos Avançados', 'outros@usp.br');
+
+INSERT INTO instituto VALUES ('CDCC', 'Centro de Divulgação Científica e Cultural', 'outros@usp.br');
+
+INSERT INTO instituto VALUES ('Outros', 'Outros', 'outros@usp.br');
+
 
 
 
 INSERT INTO usuario VALUES ('disjdj3834jfd', '10692224', 'Giovana Daniele da Silva', 'ICMC', 'giovana@usp.br');
 
-INSERT INTO usuario VALUES ('dfdfkod394j3j4', '10692054', 'João Pedro Almeida Santos Secundino', 'IFSC', 'joao@usp.br');
+INSERT INTO usuario VALUES ('dfdfkod394j3j4', '10692054', 'João Pedro Almeida Santos Secundino', 'IFSC', 'joao@usp.br')
 
 
 
