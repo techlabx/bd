@@ -70,6 +70,7 @@ CREATE TABLE usuario(
 	nuspUsuario VARCHAR(12) UNIQUE NOT NULL,
 	nomeUsuario VARCHAR(150) NOT NULL,
 	institutoUsuario VARCHAR(100) NOT NULL,
+	emailUsuario VARCHAR(100) NOT NULL,
 	
 	CONSTRAINT pk_usuario PRIMARY KEY (idUsuario),
 	CONSTRAINT fk_usuario FOREIGN KEY (institutoUsuario)
@@ -217,9 +218,9 @@ INSERT INTO instituto VALUES ('IAU', 'Instituto de Arquitetura e Urbanismo', 'ia
 
 
 
-INSERT INTO usuario VALUES ('disjdj3834jfd', '10692224', 'Giovana Daniele da Silva', 'ICMC');
+INSERT INTO usuario VALUES ('disjdj3834jfd', '10692224', 'Giovana Daniele da Silva', 'ICMC', 'giovana@usp.br');
 
-INSERT INTO usuario VALUES ('dfdfkod394j3j4', '10692054', 'João Pedro Almeida Santos Secundino', 'IFSC');
+INSERT INTO usuario VALUES ('dfdfkod394j3j4', '10692054', 'João Pedro Almeida Santos Secundino', 'IFSC', 'joao@usp.br');
 
 
 
