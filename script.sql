@@ -34,13 +34,6 @@ CREATE TABLE atendente(
 	CONSTRAINT pk_atendente PRIMARY KEY (emailAtendente)
 );
 
-CREATE TABLE usuario(
-	idUsuario VARCHAR(50),
-	nomeUsuario VARCHAR(150) NOT NULL,
-	
-	CONSTRAINT pk_usuario PRIMARY KEY (idUsuario)
-);
-
 CREATE TABLE instituto(
 	siglaInstituto VARCHAR(6),
 	nomeInstituto VARCHAR(100) NOT NULL,
@@ -49,6 +42,37 @@ CREATE TABLE instituto(
 	CONSTRAINT pk_instituto PRIMARY KEY (siglaInstituto),
 	CONSTRAINT fk_instituto FOREIGN KEY (atendenteResp)
 			   REFERENCES atendente (emailAtendente) ON DELETE SET NULL	
+);
+
+CREATE TABLE token(
+	idToken SERIAL,
+	access_token VARCHAR(256) NOT NULL,
+	refresh_token VARCHAR(256) NOT NULL,
+	scope VARCHAR(64) NOT NULL,
+	token_type CHAR(6) NOT NULL,
+	expiry_date VARCHAR(16) NOT NULL,
+	institutoToken VARCHAR(6) NOT NULL,
+
+	CONSTRAINT pk_token PRIMARY KEY (idToken),
+	CONSTRAINT fk_token FOREIGN KEY (institutoToken)
+			   REFERENCES instituto (siglaInstituto) ON DELETE CASCADE
+);
+
+
+CREATE TABLE administrador(
+	emailAdministrador VARCHAR(100) NOT NULL,
+
+	CONSTRAINT pk_administrador PRIMARY KEY (emailAdministrador)
+);
+
+CREATE TABLE usuario(
+	idUsuario VARCHAR(50),
+	nomeUsuario VARCHAR(150) NOT NULL,
+	institutoUsuario VARCHAR(100) NOT NULL,
+	
+	CONSTRAINT pk_usuario PRIMARY KEY (idUsuario),
+	CONSTRAINT fk_usuario FOREIGN KEY (institutoUsuario)
+			   REFERENCES instituto (siglaInstituto) ON DELETE CASCADE
 );
 
 
@@ -103,7 +127,7 @@ INSERT INTO pergunta (questOrigPerg, conteudoPerg)
 	        VALUES ('SRQ-20', 'Tem perdido o interesse pelas coisas?');				
 			
 INSERT INTO pergunta (questOrigPerg, conteudoPerg) 
-	        VALUES ('SRQ-20', 'Tem dificuldades no serviço (seu trabalho é penoso, lhe causa sofrimento)?');			
+	        VALUES ('SRQ-20', 'Tem dificuldades no serviço (seu trabalho é penoso, lhe causa sofrimento?)');			
 		
 INSERT INTO pergunta (questOrigPerg, conteudoPerg) 
 	        VALUES ('SRQ-20', 'Você se sente uma pessoa inútil, sem préstimo?');			
@@ -119,9 +143,6 @@ INSERT INTO pergunta (questOrigPerg, conteudoPerg)
 
 INSERT INTO pergunta (questOrigPerg, conteudoPerg) 
 	        VALUES ('SRQ-20', 'Tem sensações desagradáveis no estomago?');
-
-INSERT INTO pergunta (questOrigPerg, conteudoPerg) 
-	        VALUES ('SRQ-20', 'Fim do questionário');
 			
 		
 		
@@ -142,10 +163,8 @@ INSERT INTO pergunta (questOrigPerg, conteudoPerg)
 					
 INSERT INTO pergunta (questOrigPerg, conteudoPerg)
 			VALUES ('Columbia', 'Você já fez alguma coisa, começou a fazer algo ou planejou fazer alguma coisa para acabar com sua vida?');	
-
-INSERT INTO pergunta (questOrigPerg, conteudoPerg) 
-	        VALUES ('Columbia', 'Fim do questionário');
-
+					
+					
 					
 					
 INSERT INTO direcionamento (conteudoDirec) VALUES ('GAPSI');	
@@ -195,109 +214,11 @@ INSERT INTO instituto VALUES ('EESC', 'Escola de Engenharia de São Carlos', 'ee
 INSERT INTO instituto VALUES ('IAU', 'Instituto de Arquitetura e Urbanismo', 'iau@usp.br');
 
 
--- CAMPUS SÃO PAULO
-INSERT INTO instituto VALUES ('EACH', 'Escola de Artes, Ciências e Humanidades', 'outros@usp.br');
-
-INSERT INTO instituto VALUES ('ECA', 'Escola de Comunicações e Artes', 'outros@usp.br');
-
-INSERT INTO instituto VALUES ('EEFE', 'Escola de Educação Física e Esporte', 'outros@usp.br');
-
-INSERT INTO instituto VALUES ('EE', 'Escola de Enfermagem', 'outros@usp.br');
-
-INSERT INTO instituto VALUES ('Poli', 'Escola Politécnica', 'outros@usp.br');
-
-INSERT INTO instituto VALUES ('FAU', 'Faculdade de Arquitetura e Urbanismo', 'outros@usp.br');
-
-INSERT INTO instituto VALUES ('FCF', 'Faculdade de Ciências Farmacêuticas', 'outros@usp.br');
-
-INSERT INTO instituto VALUES ('FD', 'Faculdade de Direito', 'outros@usp.br');
-
-INSERT INTO instituto VALUES ('FEA', 'Faculdade de Economia, Administração e Contabilidade', 'outros@usp.br');
-
-INSERT INTO instituto VALUES ('FE', 'Faculdade de Educação', 'outros@usp.br');
-
-INSERT INTO instituto VALUES ('FFLCH', 'Faculdade de Filosofia, Letras e Ciências Humanas', 'outros@usp.br');
-
-INSERT INTO instituto VALUES ('FM', 'Faculdade de Medicina', 'outros@usp.br');
-
-INSERT INTO instituto VALUES ('FMVZ', 'Faculdade de Medicina Veterinária e Zootecnia', 'outros@usp.br');
-
-INSERT INTO instituto VALUES ('FO', 'Faculdade de Odontologia', 'outros@usp.br');
-
-INSERT INTO instituto VALUES ('FSP', 'Faculdade de Saúde Pública', 'outros@usp.br');
-
-INSERT INTO instituto VALUES ('IAG', 'Instituto de Astronomia, Geofísica e Ciências Atmosféricas', 'outros@usp.br');
-
-INSERT INTO instituto VALUES ('IB', 'Instituto de Biociências', 'outros@usp.br');
-
-INSERT INTO instituto VALUES ('ICB', 'Instituto de Ciências Biomédicas', 'outros@usp.br');
-
-INSERT INTO instituto VALUES ('IEE', 'Instituto de Energia e Ambiente', 'outros@usp.br');
-
-INSERT INTO instituto VALUES ('IEA', 'Instituto de Estudos Avançados', 'outros@usp.br');
-
-INSERT INTO instituto VALUES ('IEB', 'Instituto de Estudos Brasileiros', 'outros@usp.br');
-
-INSERT INTO instituto VALUES ('IF', 'Instituto de Física', 'outros@usp.br');
-
-INSERT INTO instituto VALUES ('IGc', 'Instituto de Geociências', 'outros@usp.br');
-
-INSERT INTO instituto VALUES ('IME', 'Instituto de Matemática e Estatística', 'outros@usp.br');
-
-INSERT INTO instituto VALUES ('IMT', 'Instituto de Medicina Tropical de São Paulo', 'outros@usp.br');
-
-INSERT INTO instituto VALUES ('IP', 'Instituto de Psicologia', 'outros@usp.br');
-
-INSERT INTO instituto VALUES ('IQ', 'Instituto de Química', 'outros@usp.br');
-
-INSERT INTO instituto VALUES ('IRI', 'Instituto de Relações Internacionais', 'outros@usp.br');
-
-INSERT INTO instituto VALUES ('IO', 'Instituto Oceanográfico', 'outros@usp.br');
 
 
--- CAMPUS BAURU
-INSERT INTO instituto VALUES ('FOB', 'Faculdade de Odontologia de Bauru', 'outros@usp.br');
+INSERT INTO usuario VALUES ('10692224', 'Giovana Daniele da Silva', 'ICMC');
 
+INSERT INTO usuario VALUES ('10692054', 'João Pedro Almeida Santos Secundino', 'IFSC');
 
--- CAMPUS LORENA
-INSERT INTO instituto VALUES ('EEL', 'Escola de Engenharia de Lorena', 'outros@usp.br');
-
-
--- CAMPUS PIRACICABA
-INSERT INTO instituto VALUES ('CENA', 'Centro de Energia Nuclear na Agricultura', 'outros@usp.br');
-
-INSERT INTO instituto VALUES ('ESALQ', 'Escola Superior de Agricultura "Luiz de Queiroz"', 'outros@usp.br');
-
-
--- CAMPUS PIRASSUNUNGA
-INSERT INTO instituto VALUES ('FZEA', 'Faculdade de Zootecnia e Engenharia de Alimentos', 'outros@usp.br');
-
-
--- CAMPUS RIBEIRÃO PRETO
-INSERT INTO instituto VALUES ('EEFERP', 'Escola de Educação Física e Esporte de Ribeirão Preto', 'outros@usp.br');
-
-INSERT INTO instituto VALUES ('EERP', 'Escola de Enfermagem de Ribeirão Preto', 'outros@usp.br');
-
-INSERT INTO instituto VALUES ('FCFRP', 'Faculdade de Ciências Farmacêuticas de Ribeirão Preto', 'outros@usp.br');
-
-INSERT INTO instituto VALUES ('FDRP', 'Faculdade de Direto de Ribeirão Preto', 'outros@usp.br');
-
-INSERT INTO instituto VALUES ('FEARP', 'Faculdade de Economia, Administração e Contabilidade de Ribeirão Preto', 'outros@usp.br');
-
-INSERT INTO instituto VALUES ('FFCLRP', 'Faculdade de Filosofia, Ciências e Letras de Ribeirão Preto', 'outros@usp.br');
-
-INSERT INTO instituto VALUES ('FMRP', 'Faculdade de Medicina de Ribeirão Preto', 'outros@usp.br');
-
-INSERT INTO instituto VALUES ('FORP', 'Faculdade de Odontologia de Ribeirão Preto', 'outros@usp.br');
-
-
--- CAMPUS SANTOS
-INSERT INTO instituto VALUES ('PMI', 'Departamento de Engenharia de Minas e Petróleo', 'outros@usp.br');
-
-
-
-INSERT INTO usuario VALUES ('10692224', 'Giovana Daniele da Silva');
-
-INSERT INTO usuario VALUES ('10692054', 'João Pedro Almeida Santos Secundino');
 
 
