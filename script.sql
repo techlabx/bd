@@ -67,6 +67,7 @@ CREATE TABLE administrador(
 
 CREATE TABLE usuario(
 	idUsuario VARCHAR(50),
+	nuspUsuario VARCHAR(12) UNIQUE NOT NULL,
 	nomeUsuario VARCHAR(150) NOT NULL,
 	institutoUsuario VARCHAR(100) NOT NULL,
 	
@@ -216,9 +217,9 @@ INSERT INTO instituto VALUES ('IAU', 'Instituto de Arquitetura e Urbanismo', 'ia
 
 
 
-INSERT INTO usuario VALUES ('10692224', 'Giovana Daniele da Silva', 'ICMC');
+INSERT INTO usuario VALUES ('disjdj3834jfd', '10692224', 'Giovana Daniele da Silva', 'ICMC');
 
-INSERT INTO usuario VALUES ('10692054', 'João Pedro Almeida Santos Secundino', 'IFSC');
+INSERT INTO usuario VALUES ('dfdfkod394j3j4', '10692054', 'João Pedro Almeida Santos Secundino', 'IFSC');
 
 
 
