@@ -26,22 +26,25 @@ CREATE TABLE direcionamento(
 			   --REFERENCES questionario (apelido) ON DELETE SET NULL
 );
 
-CREATE TABLE atendente(
-	nomeAtendente VARCHAR(150) NOT NULL,
-	emailAtendente VARCHAR (100),
-	linkAgenda VARCHAR(200) NOT NULL,
-	
-	CONSTRAINT pk_atendente PRIMARY KEY (emailAtendente)
-);
-
 CREATE TABLE instituto(
 	siglaInstituto VARCHAR(10),
 	nomeInstituto VARCHAR(100) NOT NULL,
-	atendenteResp VARCHAR(100),
 	
-	CONSTRAINT pk_instituto PRIMARY KEY (siglaInstituto),
-	CONSTRAINT fk_instituto FOREIGN KEY (atendenteResp)
-			   REFERENCES atendente (emailAtendente) ON DELETE SET NULL	
+	CONSTRAINT pk_instituto PRIMARY KEY (siglaInstituto)	
+);
+
+CREATE TABLE atendente(
+	nomeAtendente VARCHAR(150) NOT NULL,
+	emailAtendente VARCHAR (100),
+    institutoAtendente VARCHAR(10) NOT NULL UNIQUE,
+    imgAtendente VARCHAR(150), 
+    statusAtendente VARCHAR(10) NOT NULL DEFAULT 'WAITING',
+	
+	CONSTRAINT pk_atendente PRIMARY KEY (emailAtendente, institutoAtendente),
+    CONSTRAINT fk_atendente FOREIGN KEY (institutoAtendente)
+			   REFERENCES instituto (siglaInstituto) ON DELETE CASCADE,
+    CONSTRAINT ck_atendente CHECK(UPPER(statusAtendente) = 'CONFIRMED' OR 
+                            	  UPPER(statusAtendente) = 'WAITING')
 );
 
 CREATE TABLE token(
@@ -52,17 +55,11 @@ CREATE TABLE token(
 	token_type CHAR(6) NOT NULL,
 	expiry_date VARCHAR(16) NOT NULL,
 	institutoToken VARCHAR(6) NOT NULL,
+    linkAgenda VARCHAR(200) NOT NULL,
 
 	CONSTRAINT pk_token PRIMARY KEY (idToken),
 	CONSTRAINT fk_token FOREIGN KEY (institutoToken)
 			   REFERENCES instituto (siglaInstituto) ON DELETE CASCADE
-);
-
-
-CREATE TABLE administrador(
-	emailAdministrador VARCHAR(100) NOT NULL,
-
-	CONSTRAINT pk_administrador PRIMARY KEY (emailAdministrador)
 );
 
 CREATE TABLE usuario(
@@ -71,6 +68,7 @@ CREATE TABLE usuario(
 	nomeUsuario VARCHAR(150) NOT NULL,
 	institutoUsuario VARCHAR(100) NOT NULL,
 	emailUsuario VARCHAR(100) NOT NULL,
+    nivelAcesso BOOLEAN NOT NULL DEFAULT 'FALSE',
 	
 	CONSTRAINT pk_usuario PRIMARY KEY (idUsuario),
 	CONSTRAINT fk_usuario FOREIGN KEY (institutoUsuario)
@@ -145,9 +143,7 @@ INSERT INTO pergunta (questOrigPerg, conteudoPerg)
 
 INSERT INTO pergunta (questOrigPerg, conteudoPerg) 
 	        VALUES ('SRQ-20', 'Tem sensações desagradáveis no estomago?');
-
-INSERT INTO pergunta (questOrigPerg, conteudoPerg) 
-	        VALUES ('SRQ-20', 'Fim do questionário');			
+			
 		
 		
 INSERT INTO pergunta (questOrigPerg, conteudoPerg)
@@ -168,8 +164,6 @@ INSERT INTO pergunta (questOrigPerg, conteudoPerg)
 INSERT INTO pergunta (questOrigPerg, conteudoPerg)
 			VALUES ('Columbia', 'Você já fez alguma coisa, começou a fazer algo ou planejou fazer alguma coisa para acabar com sua vida?');	
 					
-INSERT INTO pergunta (questOrigPerg, conteudoPerg)
-			VALUES ('Columbia', 'Fim do questionário');	
 					
 					
 					
@@ -195,47 +189,38 @@ INSERT INTO direcionamento (conteudoDirec) VALUES ('SAMU');
 
 
 
-INSERT INTO atendente VALUES ('atendenteICMC', 'icmc@usp.br', 'https://calendar.google.com/calendar/embed?src=usp.br_8gf4aqtrm2hdehm8aq3u10e548%40group.calendar.google.com&ctz=America%2FSao_Paulo');
-
-INSERT INTO atendente VALUES ('atendenteIQSC', 'iqsc@usp.br', 'https://calendar.google.com/calendar/embed?src=usp.br_6fn9rhdlbg7ega7omtec6ih6h8%40group.calendar.google.com&ctz=America%2FSao_Paulo');
-
-INSERT INTO atendente VALUES ('atendenteEESC', 'eesc@usp.br', 'https://calendar.google.com/calendar/embed?src=usp.br_4u3u7sld0ra4qm7t3i229gejdg%40group.calendar.google.com&ctz=America%2FSao_Paulo');
-
-INSERT INTO atendente VALUES ('atendenteIAU', 'iau@usp.br', 'https://calendar.google.com/calendar/embed?src=usp.br_1delqhqvni7fjffap2oj30emg8%40group.calendar.google.com&ctz=America%2FSao_Paulo');
-
-INSERT INTO atendente VALUES ('atendenteOutros', 'outros@usp.br', 'https://calendar.google.com/calendar/embed?src=usp.br_vdr9jsc48snetq70f6lgdb8tpk%40group.calendar.google.com&ctz=America%2FSao_Paulo');
-
-
-
-
 -- CAMPUS SÃO CARLOS
-INSERT INTO instituto VALUES ('ICMC', 'Instituto de Ciências Matemáticas e de Computação', 'icmc@usp.br');
+INSERT INTO instituto VALUES ('ICMC', 'Instituto de Ciências Matemáticas e de Computação');
 
-INSERT INTO instituto VALUES ('IQSC', 'Instituto de Química de São Carlos', 'iqsc@usp.br');
+INSERT INTO instituto VALUES ('IQSC', 'Instituto de Química de São Carlos');
 
-INSERT INTO instituto VALUES ('IFSC', 'Instituto de Física de São Carlos', 'outros@usp.br');
+INSERT INTO instituto VALUES ('IFSC', 'Instituto de Física de São Carlos');
 
-INSERT INTO instituto VALUES ('EESC', 'Escola de Engenharia de São Carlos', 'eesc@usp.br');
+INSERT INTO instituto VALUES ('EESC', 'Escola de Engenharia de São Carlos');
 
-INSERT INTO instituto VALUES ('IAU', 'Instituto de Arquitetura e Urbanismo', 'iau@usp.br');
+INSERT INTO instituto VALUES ('IAU', 'Instituto de Arquitetura e Urbanismo');
 
 -- OUTROS
-INSERT INTO instituto VALUES ('PUSP', 'Prefeitura do Campus USP', 'outros@usp.br');
+INSERT INTO instituto VALUES ('PUSP', 'Prefeitura do Campus USP');
 
-INSERT INTO instituto VALUES ('CeTI-SC', 'Centro de Tecnologia da Informação de São Carlos', 'outros@usp.br');
+INSERT INTO instituto VALUES ('CeTI-SC', 'Centro de Tecnologia da Informação de São Carlos');
 
-INSERT INTO instituto VALUES ('IEA', 'Instituto de Estudos Avançados', 'outros@usp.br');
+INSERT INTO instituto VALUES ('IEA', 'Instituto de Estudos Avançados');
 
-INSERT INTO instituto VALUES ('CDCC', 'Centro de Divulgação Científica e Cultural', 'outros@usp.br');
+INSERT INTO instituto VALUES ('CDCC', 'Centro de Divulgação Científica e Cultural');
 
-INSERT INTO instituto VALUES ('Outros', 'Outros', 'outros@usp.br');
+INSERT INTO instituto VALUES ('Outros', 'Outros');
 
+
+
+INSERT INTO atendente VALUES ('atendenteICMC', 'icmc@usp.br', 'ICMC', NULL, 'WAITING');
+
+INSERT INTO atendente VALUES ('atendenteIQSC', 'iqsc@usp.br', 'IFSC', NULL, 'WAITING');
+
+INSERT INTO atendente VALUES ('atendenteEESC', 'eesc@usp.br', 'EESC', NULL, 'WAITING');
 
 
 
 INSERT INTO usuario VALUES ('disjdj3834jfd', '10692224', 'Giovana Daniele da Silva', 'ICMC', 'giovana@usp.br');
 
 INSERT INTO usuario VALUES ('dfdfkod394j3j4', '10692054', 'João Pedro Almeida Santos Secundino', 'IFSC', 'joao@usp.br')
-
-
-
