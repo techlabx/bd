@@ -49,11 +49,11 @@ CREATE TABLE atendente(
 
 CREATE TABLE token(
 	idToken SERIAL,
-	access_token VARCHAR(256) NOT NULL,
-	refresh_token VARCHAR(256) NOT NULL,
-	scope VARCHAR(64) NOT NULL,
-	token_type CHAR(6) NOT NULL,
-	expiry_date VARCHAR(16) NOT NULL,
+	access_token VARCHAR(256),
+	refresh_token VARCHAR(256),
+	scope VARCHAR(64),
+	token_type CHAR(6),
+	expiry_date VARCHAR(16),
 	institutoToken VARCHAR(6) NOT NULL,
     linkAgenda VARCHAR(200) NOT NULL,
 
@@ -143,6 +143,9 @@ INSERT INTO pergunta (questOrigPerg, conteudoPerg)
 
 INSERT INTO pergunta (questOrigPerg, conteudoPerg) 
 	        VALUES ('SRQ-20', 'Tem sensações desagradáveis no estomago?');
+
+INSERT INTO pergunta (questOrigPerg, conteudoPerg) 
+	        VALUES ('SRQ-20', 'Fim do questionário');
 			
 		
 		
@@ -164,6 +167,8 @@ INSERT INTO pergunta (questOrigPerg, conteudoPerg)
 INSERT INTO pergunta (questOrigPerg, conteudoPerg)
 			VALUES ('Columbia', 'Você já fez alguma coisa, começou a fazer algo ou planejou fazer alguma coisa para acabar com sua vida?');	
 					
+INSERT INTO pergunta (questOrigPerg, conteudoPerg)
+			VALUES ('Columbia', 'Fim do questionário');	
 					
 					
 					
