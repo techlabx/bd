@@ -16,16 +16,6 @@ CREATE TABLE pergunta(
 			    REFERENCES questionario (apelido) ON DELETE CASCADE
 );
 
-CREATE TABLE direcionamento(
-	idDirec SERIAL,
-	--questOrigDirec VARCHAR(250),
-	conteudoDirec VARCHAR(800) NOT NULL,
-
-	CONSTRAINT pk_direcionamento PRIMARY KEY (idDirec)
-	--CONSTRAINT fk_direcionamento FOREIGN KEY (questOrigDirec)
-			   --REFERENCES questionario (apelido) ON DELETE SET NULL
-);
-
 CREATE TABLE instituto(
 	siglaInstituto VARCHAR(10),
 	nomeInstituto VARCHAR(100) NOT NULL,
@@ -77,7 +67,7 @@ CREATE TABLE usuario(
 
 
 
-INSERT INTO questionario VALUES ('SRQ-20', 'Self Report Questionnaire', 'Nas próximas próximas perguntas, você realizará uma autoavaliação a respeito da sua saúde em geral. Serão 24 afirmativas, e você deve selecionar sim ou não para cada afirmativa. Não existe resposta certa ou errada, por isso pedimos que você responda da forma que você julgar melhor. Caso tenha alguma dúvida, você pode nos mandar uma mensagem pelo XXX.');
+INSERT INTO questionario VALUES ('SRQ-20', 'Self Report Questionnaire', 'Nas próximas próximas perguntas, você realizará uma autoavaliação a respeito da sua saúde em geral. Serão 24 afirmativas, e você deve selecionar sim ou não para cada afirmativa. Não existe resposta certa ou errada, por isso pedimos que você responda da forma que você julgar melhor. Caso tenha alguma dúvida, você pode nos mandar uma mensagem pelo e-mail gapsi@icmc.usp.br ou apoia.sc@usp.br.');
 								  
 INSERT INTO questionario VALUES ('Columbia', 'Avaliação do Risco de Suicídio de Columbia', 'Nessa escala, será avaliado o risco de suicídio através de algumas perguntas. Essa escala foi criada por pesquisadores de diversas universidades (Universidade de Columbia; Universidade da Pensilvânia; Universidade de Pittsburgh e Universidade de Nova Iorque) e avalia comportamentos específicos que podem ser indicativos da intenções de uma pessoa em cometer suicídio. É importante ressaltar que os resultados apresentados são referentes a um período específico de sua vida, e que também podem mudar de acordo com as condições ambientais e temporais. É importante destacar que este resultado não visa definir você enquanto “suicida”, mas, sim, mostrar a necessidade de você procurar ajuda para enfrentar as dificuldades que está passando, no momento. Por isso pedimos que você seja o mais sincero/a possível nas respostas, para que você saiba se é importante buscar ajuda, ou de familiares e amigos, ou de uma equipe de saúde especializada.');
 
@@ -169,28 +159,6 @@ INSERT INTO pergunta (questOrigPerg, conteudoPerg)
 					
 INSERT INTO pergunta (questOrigPerg, conteudoPerg)
 			VALUES ('Columbia', 'Fim do questionário');	
-					
-					
-					
-INSERT INTO direcionamento (conteudoDirec) VALUES ('GAPSI');	
-
-INSERT INTO direcionamento (conteudoDirec) VALUES ('Apoia USP');	
-
-INSERT INTO direcionamento (conteudoDirec) VALUES ('UBS');	
-
-INSERT INTO direcionamento (conteudoDirec) VALUES ('USF');	
-
-INSERT INTO direcionamento (conteudoDirec) VALUES ('Matriciamento');	
-
-INSERT INTO direcionamento (conteudoDirec) VALUES ('CAPS (II ou AD)');	
-
-INSERT INTO direcionamento (conteudoDirec) VALUES ('UPA');	
-
-INSERT INTO direcionamento (conteudoDirec) VALUES ('Santa Casa');	
-
-INSERT INTO direcionamento (conteudoDirec) VALUES ('Transporte');	
-
-INSERT INTO direcionamento (conteudoDirec) VALUES ('SAMU');	
 
 
 
