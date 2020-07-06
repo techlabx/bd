@@ -194,6 +194,8 @@ INSERT INTO atendente VALUES ('atendenteEESC', 'eesc@usp.br', 'EESC', NULL, 'WAI
 
 
 
-INSERT INTO usuario VALUES ('disjdj3834jfd', '10692224', 'Giovana Daniele da Silva', 'ICMC', 'giovana@usp.br');
+INSERT INTO usuario VALUES ('109843909199415760480', '10692224', 'Giovana Daniele da Silva', 'ICMC', 'giovana.daniele@usp.br', 'FALSE');
 
-INSERT INTO usuario VALUES ('dfdfkod394j3j4', '10692054', 'João Pedro Almeida Santos Secundino', 'IFSC', 'joao@usp.br')
+INSERT INTO usuario VALUES ('118232723598873500531', '10684600', 'Gabriel dos Santos Nicolau', 'ICMC', 'gabriel.nicolau@usp.br', 'TRUE');
+
+INSERT INTO usuario VALUES ('109533461542243924440', '9845221', 'Pedro Paulo Isnard Brando', 'ICMC', 'pedro.brando@usp.br', 'TRUE');
